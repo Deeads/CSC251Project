@@ -1,155 +1,161 @@
-import java.util.Scanner;
+
 
 public class policy
 {
-   int holderNum, holderAge, policyNum; 
-   String ProviderName, holderFirstName, holderLastName, holderSmokeStatus;
-   double holderHeight, holderWeight, bmiNum, baseFee;
+   private int holderNum, holderAge, policyNum; 
+   private String providerName, holderFirstName, holderLastName, holderSmokeStatus;
+   private double holderHeight;
+   private double holderWeight;
+   
+   
+   
+   
    public policy()
    {
-      this.holderNum =0;
-      this.holderAge = 0;
-      this.ProviderName = "";
-      this.holderFirstName = "";
-      this.holderLastName = "";
-      this.holderSmokeStatus ="";
-      this.holderHeight = 0;
-      this.holderWeight = 0;
-      this.bmiNum = 0;
-      this.baseFee = 600;
-     
+      holderNum =0;
+      holderAge = 0;
+      providerName = "";
+      holderFirstName = "";
+      holderLastName = "";
+      holderSmokeStatus ="";
+      holderHeight = 0;
+      holderWeight = 0;     
    }  
    
  
    
    
-   public policy(int holderAge, String holderSmokeStatus, double holderHeight, double holderWeight)
+   
+   public policy(int holderAge, String holderSmokeStatus, double holderWeight, double holderHeight, int holderNum, String holderLastName, String holderFirstName, String providerName)
    {
-      price(holderAge, holderSmokeStatus, holderHeight, holderWeight);
+      this.holderNum = policyNum;
+      this.providerName = providerName;
+      this.holderFirstName = holderFirstName;
+      this.holderLastName = holderLastName;
+      this.holderAge = holderAge;
+      this.holderSmokeStatus = holderSmokeStatus;
+      this.holderHeight = holderHeight;
+      this.holderWeight = holderWeight;
+   }
    
+   public void setPolicyNumber(int policyNumber)
+   {
+      this.policyNum = policyNum;
+   }
    
+   public void setProviderName(String providerName)
+   {
+      this.providerName = providerName;
+   }
+   
+   public void setHolderFirstName(String holderFirstName)
+   {
+      this.holderFirstName = holderFirstName;
    }
    
    
-   public double bmi(double holderHeight, double holderWeight)
+   public void setHolderLastName(String holderLastName)
    {
-      final double BMIHEIGHT =Math.pow(holderHeight,2);
-      
-      this.bmiNum = (holderWeight*703)/(BMIHEIGHT);
-      
-      
-      return this.bmiNum;
+      this.holderLastName = holderLastName;
+   }
+   
+   public void setHolderAge(int holderAge)
+   {
+      this.holderAge = holderAge;
+   }
+   
+   public void setHolderSmokeStatus(String holderSmokeStatus)
+   {
+      this.holderSmokeStatus = holderSmokeStatus;
+   }
+   
+   public void setHolderHeight(double holderHeight)
+   {
+      this.holderHeight = holderHeight;
+   }
+   
+   public void setHolderWeight(double holderWeight)
+   {
+      this.holderWeight = holderWeight;
+   }
+   
+   public int getPolicyNumber()
+   {
+   
+      return policyNum;
+   }
+   
+   public String getProviderName()
+   {
+      return providerName;
+   }
+   
+   public String getHolderFirstName()
+   {
+   
+      return holderFirstName;
+   }
+   
+   public String getHolderLastName()
+   {
+      return holderLastName;
+   }
+   
+   public int getHolderAge()
+   {
+      return holderAge;
+   }
+   
+   public String getHolderSmokeStatus()
+   {
+   
+      return holderSmokeStatus;
+   }
+   
+   
+   public double getHolderHeight()
+   {
+   
+      return holderHeight;
+   }
+   
+   public double getHolderWeight()
+   {
+      return holderWeight;
+   }
+   
+   
+   public double getBmi()
+   {
+      final double BMIHEIGHT =Math.pow(holderHeight,2);    
+      return (holderWeight*703)/(BMIHEIGHT);
    
    }
   
 
    
-   public double price(int holderAge, String holderSmokeStatus, double holderHeight, double holderWeight)
+   public double getPrice()
    {
-     
-      this.baseFee = 600;
-     
+      double price = 600;
 
       if (holderAge > 50)
       {
-         this.baseFee += 75;
+         price += 75;
       }
       
-      if (holderSmokeStatus.equalsIgnoreCase("smoker")== true)
+      if (holderSmokeStatus.equalsIgnoreCase("smoker"))
       {
-         this.baseFee+= 100;
+         price += 100;
       
       }
-      
+      if (getBmi()> 35)
+      {
+         price += (getBmi() - 35)*20;
+      }
                  
-      return this.baseFee;
+      return price;
       
       
    }
-   
-   
-
-
-   public static void main(String[] args)
-   {
-   
-      Scanner input = new Scanner(System.in);
-      
-      double fullprice;
-      
-      policy policy1 = new policy();
-      
-      System.out.print("Please enter the Policy Number:");
-      
-      int UserpolicyNum = input.nextInt();
-      
-      
-      System.out.print("Please enter the Provider Name:");
-      
-      String userProviderName = input.nextLine();
-      input.nextLine();
-      System.out.print("Please enter the Policyholder's First Name:");
-      
-      String userHoldersFirstName = input.nextLine();
-      
-      System.out.print("Please enter the Policyholder's Last Name:");
-      
-      String userHoldersLastName = input.nextLine();
-      
-      System.out.print("Please enter the Policyholder's age:");
-      
-      int userHoldersAge = input.nextInt();
-      
-      System.out.print("Please enter the Policyholder's smoking Status(smoker/non-smoker:");
-      
-      String userHoldersSmokeStatus = input.nextLine();
-      input.nextLine();
-     
-      System.out.print("Please enter the Policyholder's Height (in inches):");
-      
-      double userHoldersHeight = input.nextDouble();
-      
-      System.out.print("Please enter the Policyholder's Weight (in pounds):");
-      
-      double userHoldersWeight = input.nextDouble();
-      
-      
-      
-      policy policy2 = new policy(userHoldersAge, userHoldersSmokeStatus,userHoldersHeight,userHoldersWeight);
-      
-      System.out.println("test " + policy2.price(userHoldersAge, userHoldersSmokeStatus,userHoldersHeight,userHoldersWeight));
-      System.out.println("test2 " + policy2.bmi(userHoldersHeight,userHoldersWeight));
-      double bmi = policy2.bmiNum;
-      double bmiPrice = (bmi-35)*20;
-      double finalBasePrice =policy2.baseFee;
-      double fullPrice = finalBasePrice+bmiPrice;
-      
-      
-      
-      System.out.printf("Policy Number: %d ", UserpolicyNum);
-      
-      
-      System.out.printf("%nProvider Name: %s ", userProviderName);
-      
-     
-      System.out.printf("%nPolicyholder's First Name: %s ", userHoldersFirstName);
-      
-      System.out.printf("%nPolicyholder's Last Name: %s ", userHoldersLastName);
-      
-      System.out.printf("%nPolicyholder's Age: %s ", userProviderName);
-      
-      System.out.printf("%nPolicyholder's Smiking Status: %s ",userHoldersSmokeStatus);
-      
-      System.out.printf("%nPolicyHolder's Height: %.2f inches",userHoldersHeight);
-      
-      System.out.printf("%nPolicyHolder's Weight: %.2f pounds",userHoldersWeight);
-      
-      System.out.printf("%nPolicyHolder's Bmi: %.2f",bmi);
-      
-      System.out.printf("%nPolicy Price: $%.2f",fullPrice);
-      
-      
-      
-   }
-
-}  
+         
+}

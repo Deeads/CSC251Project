@@ -1,161 +1,149 @@
+/**
+the policy class store data relating to an insurance policy
+*/
 
-
-public class policy
+public class Policy
 {
-   private int holderNum, holderAge, policyNum; 
-   private String providerName, holderFirstName, holderLastName, holderSmokeStatus;
-   private double holderHeight;
-   private double holderWeight;
+   private int policyNum; 
+   private String providerName;   
+   private PolicyHolder policyHolder;
+   private static int policyCount = 0;
    
-   
-   
-   
-   public policy()
+   public Policy()
    {
-      holderNum =0;
-      holderAge = 0;
+      policyNum = 0;
       providerName = "";
-      holderFirstName = "";
-      holderLastName = "";
-      holderSmokeStatus ="";
-      holderHeight = 0;
-      holderWeight = 0;     
+      policyHolder = new PolicyHolder();
+      policyCount++;     
    }  
    
  
    
    
-   
-   public policy(int holderAge, String holderSmokeStatus, double holderWeight, double holderHeight, int holderNum, String holderLastName, String holderFirstName, String providerName)
+   /**
+      this is a constructor that accpets arguments for each of its fields
+      @param pNum the policy number
+      @param pName the provider name
+      @param ph the object policyHolder
+   */
+   public Policy(int pNum, String pName, PolicyHolder ph)
    {
-      this.holderNum = policyNum;
-      this.providerName = providerName;
-      this.holderFirstName = holderFirstName;
-      this.holderLastName = holderLastName;
-      this.holderAge = holderAge;
-      this.holderSmokeStatus = holderSmokeStatus;
-      this.holderHeight = holderHeight;
-      this.holderWeight = holderWeight;
+      policyNum = pNum;
+      providerName = pName;
+      policyHolder = new PolicyHolder(ph);
+      policyCount++;
    }
    
-   public void setPolicyNumber(int policyNumber)
+   //settters
+   /**
+      the setPolicy Number method updates the value of the policyNum field 
+      @param pNum the policy number
+   
+   */
+   public void setPolicyNumber(int pNum)
    {
-      this.policyNum = policyNum;
+      policyNum = pNum;
+   }
+   /**
+      the setPrvoiderName method updates the value of the providerName field 
+      @param pNum the policy number
+   
+   */
+   public void setProviderName(String pName)
+   {
+      providerName = pName;
    }
    
-   public void setProviderName(String providerName)
+   /**
+      the setPolicyHolder method updates the value of the PolicyHolder field 
+      @param ph the policyHolder object 
+   */   
+   public void setPolicyHolder(PolicyHolder ph)
    {
-      this.providerName = providerName;
+      policyHolder = new PolicyHolder(ph);
    }
    
-   public void setHolderFirstName(String holderFirstName)
-   {
-      this.holderFirstName = holderFirstName;
-   }
+   /**
+      the getPolicy Number method gets the value of the policyNum field 
+      @param none
    
-   
-   public void setHolderLastName(String holderLastName)
-   {
-      this.holderLastName = holderLastName;
-   }
-   
-   public void setHolderAge(int holderAge)
-   {
-      this.holderAge = holderAge;
-   }
-   
-   public void setHolderSmokeStatus(String holderSmokeStatus)
-   {
-      this.holderSmokeStatus = holderSmokeStatus;
-   }
-   
-   public void setHolderHeight(double holderHeight)
-   {
-      this.holderHeight = holderHeight;
-   }
-   
-   public void setHolderWeight(double holderWeight)
-   {
-      this.holderWeight = holderWeight;
-   }
-   
+   */
    public int getPolicyNumber()
    {
-   
       return policyNum;
    }
    
-   public String getProviderName()
+   
+   
+   /**
+      the getPrvoiderName method gets the value of the providerName field 
+      @param none
+   
+   */
+   public String getProviderName(String pName)
    {
       return providerName;
    }
    
-   public String getHolderFirstName()
+   /**
+      the getPolicyHolder method gets the value of the PolicyHolder field 
+      @param none 
+      @return new policyHolder object 
+   */   
+   public PolicyHolder getPolicyHolder()
    {
-   
-      return holderFirstName;
+      return new PolicyHolder(policyHolder);
    }
    
-   public String getHolderLastName()
+   /**
+      the getPolicyHolder method gets the static policy count field  
+      @param none
+   */   
+   public static int getPolicyCount()
    {
-      return holderLastName;
+      return policyCount;
    }
    
-   public int getHolderAge()
-   {
-      return holderAge;
-   }
-   
-   public String getHolderSmokeStatus()
-   {
-   
-      return holderSmokeStatus;
-   }
-   
-   
-   public double getHolderHeight()
-   {
-   
-      return holderHeight;
-   }
-   
-   public double getHolderWeight()
-   {
-      return holderWeight;
-   }
-   
-   
-   public double getBmi()
-   {
-      final double BMIHEIGHT =Math.pow(holderHeight,2);    
-      return (holderWeight*703)/(BMIHEIGHT);
-   
-   }
-  
-
+   /**
+      getPrice calculates then returns total price of policy
+      @param none
+   */
    
    public double getPrice()
    {
       double price = 600;
 
-      if (holderAge > 50)
+      if (policyHolder.getAge() > 50)
       {
          price += 75;
       }
       
-      if (holderSmokeStatus.equalsIgnoreCase("smoker"))
+      if (policyHolder.getSmokingStatus().equalsIgnoreCase("smoker"))
       {
          price += 100;
       
       }
-      if (getBmi()> 35)
+      if (policyHolder.getBMI()> 35)
       {
-         price += (getBmi() - 35)*20;
+         price += (policyHolder.getBMI() - 35)*20;
       }
                  
       return price;
       
       
+   }
+   
+   
+   public String toString()
+   {
+      String output = "";
+      output += "Policy Number: " + policyNum + "\n";
+      output += "Provider Name: " + providerName + "\n";
+      output += policyHolder.toString();
+      output += String.format("Policy Price: $%,.2f\n", getPrice());
+      
+      return output;
+   
    }
          
 }

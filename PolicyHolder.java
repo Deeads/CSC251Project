@@ -30,7 +30,7 @@ public class PolicyHolder
    
    
    /**
-      a constructor that aceppects arguments for fields
+      a constructor that aceppects arguments for fieldfs
       @param first   policyholders first name
       @param last    policyholders last name
       @param age     policyholders age

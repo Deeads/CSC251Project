@@ -1,5 +1,5 @@
 /**
-the policy class store data relating to an insurance pol
+the policy class store data relating to an insurance policy 
 */
 
 public class Policy

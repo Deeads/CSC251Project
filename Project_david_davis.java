@@ -60,7 +60,7 @@ public class Project_david_davis
          {
             System.out.println(policies.get(i));
             System.out.println();
-            
+            //count the number of smokers and non-smokers
             if (policies.get(i).getPolicyHolder().getSmokingStatus().equalsIgnoreCase("smoker"))
             {
                smokerCount++;

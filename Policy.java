@@ -7,14 +7,16 @@ public class Policy
    private int policyNum; 
    private String providerName;   
    private PolicyHolder policyHolder;
+   // This is a static field for object counting gets incremented in both constructors shown in pages 496 to 501
    private static int policyCount = 0;
    
    public Policy()
    {
       policyNum = 0;
       providerName = "";
-      policyHolder = new PolicyHolder();
-      policyCount++;     
+      // policy holder reference variable disscussed in aggregation chapter pages 522-527
+      policyHolder = new PolicyHolder(); 
+      policyCount++;//increment     
    }  
    
  
@@ -30,8 +32,10 @@ public class Policy
    {
       policyNum = pNum;
       providerName = pName;
+      // policy holder reference variable  in arg constructor disscussed in aggregation chapter pages 522-527
+      // improtant for security uses deep copying of the object refrenced by ph 
       policyHolder = new PolicyHolder(ph);
-      policyCount++;
+      policyCount++;//increment
    }
    
    //settters
@@ -58,6 +62,7 @@ public class Policy
       the setPolicyHolder method updates the value of the PolicyHolder field 
       @param ph the policyHolder object 
    */   
+   //Deepcoping for pretecting setting  
    public void setPolicyHolder(PolicyHolder ph)
    {
       policyHolder = new PolicyHolder(ph);
@@ -80,7 +85,7 @@ public class Policy
       @param none
    
    */
-   public String getProviderName(String pName)
+   public String getProviderName()
    {
       return providerName;
    }
@@ -134,7 +139,7 @@ public class Policy
    }
    
    
-   public String toString()
+   public String toString()//ToString method Disscussed in pages 507 to 511
    {
       String output = "";
       output += "Policy Number: " + policyNum + "\n";
